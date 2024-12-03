@@ -38,6 +38,30 @@
 // #define LEFT_ROTATION_SENSOR_PORT 13
 // #define RIGHT_ROTATION_SENSOR_PORT 3
 
+// #define LEFT_LIFT_MOTOR 18
+// #define RIGHT_LIFT_MOTOR 10
+
+// #define UPPER_INTAKE_MOTOR 15
+// #define LOWER_INTAKE_MOTOR 14
+
+// #define IMU_SENSOR_PORT 17
+// #define SERIALPORT 16
+
+// robot with base(new robot)
+// #define LEFT_UPPER_BEVEL_MOTOR_1 16
+// #define LEFT_UPPER_BEVEL_MOTOR_2 17
+// #define LEFT_LOWER_BEVEL_MOTOR_1 14
+// #define LEFT_LOWER_BEVEL_MOTOR_2 15
+// #define RIGHT_UPPER_BEVEL_MOTOR_1 9
+// #define RIGHT_UPPER_BEVEL_MOTOR_2 10
+// #define RIGHT_LOWER_BEVEL_MOTOR_1 4
+// #define RIGHT_LOWER_BEVEL_MOTOR_2 5
+
+
+// #define LEFT_ROTATION_SENSOR_PORT 13
+// #define RIGHT_ROTATION_SENSOR_PORT 1
+
+// robot without base
 #define LEFT_UPPER_BEVEL_MOTOR_1 11
 #define LEFT_UPPER_BEVEL_MOTOR_2 12
 #define LEFT_LOWER_BEVEL_MOTOR_1 19
@@ -47,20 +71,15 @@
 #define RIGHT_LOWER_BEVEL_MOTOR_1 8
 #define RIGHT_LOWER_BEVEL_MOTOR_2 9
 
-#define LEFT_LIFT_MOTOR 18
-#define RIGHT_LIFT_MOTOR 10
-
-#define UPPER_INTAKE_MOTOR 15
-#define LOWER_INTAKE_MOTOR 14
-
-#define IMU_SENSOR_PORT 17
-#define SERIALPORT 16
-
 #define LEFT_ROTATION_SENSOR_PORT 13
 #define RIGHT_ROTATION_SENSOR_PORT 1
 
 #define POTENTIOMETER_SENSOR_PORT 'H'
 #define SOLENOID_SENSOR_PORT 'G'
+
+#define CONVEYOR_MOTOR 10
+#define ROLLER_MOTOR 4
+
 
 #define ZERO_VECTOR INFINITY
 
@@ -77,17 +96,21 @@ pros::Motor ruB(RIGHT_UPPER_BEVEL_MOTOR_2, pros::E_MOTOR_GEARSET_06, false, pros
 pros::Motor rlA(RIGHT_LOWER_BEVEL_MOTOR_1, pros::E_MOTOR_GEARSET_06, false, pros::E_MOTOR_ENCODER_DEGREES);
 pros::Motor rlB(RIGHT_LOWER_BEVEL_MOTOR_2, pros::E_MOTOR_GEARSET_06, false, pros::E_MOTOR_ENCODER_DEGREES);
 
-pros::Motor intakeLower(UPPER_INTAKE_MOTOR, pros::E_MOTOR_GEARSET_06, true, pros::E_MOTOR_ENCODER_DEGREES);
-pros::Motor intakeUpper(LOWER_INTAKE_MOTOR, pros::E_MOTOR_GEARSET_06, true, pros::E_MOTOR_ENCODER_DEGREES);
+// pros::Motor intakeLower(UPPER_INTAKE_MOTOR, pros::E_MOTOR_GEARSET_06, true, pros::E_MOTOR_ENCODER_DEGREES);
+// pros::Motor intakeUpper(LOWER_INTAKE_MOTOR, pros::E_MOTOR_GEARSET_06, true, pros::E_MOTOR_ENCODER_DEGREES);
 
-pros::Motor liftL(LEFT_LIFT_MOTOR, pros::E_MOTOR_GEARSET_06, true, pros::E_MOTOR_ENCODER_DEGREES);
-pros::Motor liftR(RIGHT_LIFT_MOTOR, pros::E_MOTOR_GEARSET_06, false, pros::E_MOTOR_ENCODER_DEGREES);
+// pros::Motor liftL(LEFT_LIFT_MOTOR, pros::E_MOTOR_GEARSET_06, true, pros::E_MOTOR_ENCODER_DEGREES);
+// pros::Motor liftR(RIGHT_LIFT_MOTOR, pros::E_MOTOR_GEARSET_06, false, pros::E_MOTOR_ENCODER_DEGREES);
 
 pros::Rotation left_rotation_sensor(LEFT_ROTATION_SENSOR_PORT, true);
 pros::Rotation right_rotation_sensor(RIGHT_ROTATION_SENSOR_PORT, true);
-pros::Imu imu(IMU_SENSOR_PORT);
-pros::ADIAnalogIn lifter(POTENTIOMETER_SENSOR_PORT);
-pros::ADIDigitalOut solenoid(SOLENOID_SENSOR_PORT);
+// pros::Imu imu(IMU_SENSOR_PORT);
+
+// pros::Motor conveyor(CONVEYOR_MOTOR, pros::E_MOTOR_GEARSET_06, false, pros::E_MOTOR_ENCODER_DEGREES);
+// pros::Motor roller(ROLLER_MOTOR, pros::E_MOTOR_GEARSET_06, false, pros::E_MOTOR_ENCODER_DEGREES);
+
+// pros::ADIAnalogIn lifter(POTENTIOMETER_SENSOR_PORT);
+// pros::ADIDigitalOut solenoid(SOLENOID_SENSOR_PORT);
 
 extern "C" int32_t vexGenericSerialReceive( uint32_t index, uint8_t *buffer, int32_t length );
 extern "C" void vexGenericSerialEnable(  uint32_t index, uint32_t nu );
@@ -125,7 +148,7 @@ double theta; // angle between direction vector and robot right, radians
 const double angle_kP = 28.0;   //swerve wheel pivoting in driver control and auton
 const double angle_kI = 0.00;
 const double angle_kD = 5000.0;
-
+// const double angle_kD = 5000.0;
 const double distance_kP = 30.0; //swerve wheel rotation distance for auton
 const double distance_kI = 0.0;
 const double distance_kD = 500.0;
